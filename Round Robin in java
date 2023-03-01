@@ -54,7 +54,7 @@ System.out.print((i+1)+"     "+bt[i]+"     "+tat[i]+"     "+wt[i]);
 }  
 awt=awt/n;  
 atat=atat/n;  
-System.out.println("\nAverage waiting Time = "+awt+"\n");  
+System.out.println("Average waiting Time = "+awt);  
 System.out.println("Average turnaround time = "+atat);  
 }  
 } 
