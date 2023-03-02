@@ -43,14 +43,14 @@ tat[i] = sq;
 if(n == count)  
 break;  
 }    
-System.out.println("Process"+"     "+"Burst Time"+"     "+"Turnaround Time"+"     "+"Waiting Time");  
+System.out.print("\nProcess\t      Burst Time\t       Turnaround Time\t          Waiting Time\n");   
 System.out.println();  
 for(i=0;i<n;i++)  
 {  
 wt[i] = tat[i] - bt[i];  
 awt = awt + wt[i];  
 atat = atat + tat[i];  
-System.out.print((i+1)+"     "+bt[i]+"     "+tat[i]+"     "+wt[i]);  
+System.out.print("\n "+(i+1)+"\t "+bt[i]+"\t\t "+tat[i]+"\t\t "+wt[i]+"\n");  
 }  
 awt=awt/n;  
 atat=atat/n;  
