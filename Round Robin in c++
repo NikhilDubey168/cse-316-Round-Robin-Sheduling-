@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+int main(){
+int i,n,time,rem,temp=0,qt,wt=0,tat=0;
+cout<<"Enter the total number of process (max 10) = "<<endl;
+cin>>n;
+rem=n;
+int at[n];
+int bt[n];
+int rt[n];
+for(i=0;i<n;i++){
+	cout<<"Arrival time of process "<<i<<endl;
+	cin>>at[i];
+	cout<<"Burst time of process "<<i<<endl;
+	cin>>bt[i];
+	rt[i]=bt[i];
+}
+cout<<"Enter quantum time = "<<endl;
+cin>>qt;
+for(i=0,time=0;rem!=0;){
+	if(rt[i]<=qt && rt[i]>0)
+		{
+			time = time + rt[i];
+		
+			rt[i]=0;
+			temp=1;
+		}
+
+		else if(rt[i]>qt)
+		{
+			rt[i] = rt[i] - qt;
+			time = time + qt;
+		
+		}
+		if(rt[i]=0 && temp==1){
+			rem--;
+            tat = tat + time - at[i];
+			wt = wt + time-at[i]-bt[i];
+			cout<<"Process"<<i<<"tat:wt";
+			cout<<tat<<wt;
+			cout<<endl;
+			temp=0;
+		}
+	}
+}
+/* rt is the remaining time that a process has left with after subtracting qt quantum time if bt is greater than qt */
