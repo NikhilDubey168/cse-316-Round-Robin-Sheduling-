@@ -1,8 +1,9 @@
 #include <iostream>
 using namespace std;
 int main(){
-int i,n,time,rem,temp=0,qt,wt=0,tat=0;
-cout<<"Enter the total number of process (max 10) = "<<endl;
+int i,n,time,rem,temp=0,qt;
+float wt=0,tat=0;
+cout<<"Enter the total number of process (max 10 pref) = "<<endl;
 cin>>n;
 rem=n;
 int at[n];
@@ -17,6 +18,7 @@ for(i=0;i<n;i++){
 }
 cout<<"Enter quantum time = "<<endl;
 cin>>qt;
+cout<<"\n\nProcess\t:Turnaround_time:Waiting_time\n\n";
 for(i=0,time=0;rem!=0;){
 	if(rt[i]<=qt && rt[i]>0)
 		{
@@ -29,27 +31,27 @@ for(i=0,time=0;rem!=0;){
 		else if(rt[i]>qt)
 		{
 			rt[i] = rt[i] - qt;
+		
 			time = time + qt;
 		
 		}
 		if(rt[i]=0 && temp==1){
 			rem--;
-            tat = tat + time - at[i];
-			wt = wt + time-at[i]-bt[i];
-			cout<<"Process"<<i<<"tat:wt";
-			cout<<tat<<wt;
-			cout<<endl;
+			tat=time-at[i];
+			wt=tat-bt[i];
+			cout<<i<<tat<<wt<<endl;
 			temp=0;
 		}
 		if(i == n-1)
-	        i=0;
+			i=0;
 		else if(at[i+1] <= time)
-		i++;
+			i++;
 		else
-		i=0;
-	}
-	cout<<"Average waiting time "<<wt*1.0/n<<endl;
-	cout<<"Average turn around time "<<tat*1.0/n<<endl;;
-        return 0;
+			i=0;
+	} 
+	cout<<"Avg Waiting_time "<<wt/n<<endl;
+	cout<<"Avg Turn_around_time "<<tat/n<<endl;;
+
+	return 0;
+	
 }
-/* rt is the remaining time that a process has left with after subtracting qt quantum time if bt is greater than qt */
