@@ -41,6 +41,15 @@ for(i=0,time=0;rem!=0;){
 			cout<<endl;
 			temp=0;
 		}
+		if(i == n-1)
+	        i=0;
+		else if(at[i+1] <= time)
+		i++;
+		else
+		i=0;
 	}
+	cout<<"Average waiting time "<<wt*1.0/n<<endl;
+	cout<<"Average turn around time "<<tat*1.0/n<<endl;;
+        return 0;
 }
 /* rt is the remaining time that a process has left with after subtracting qt quantum time if bt is greater than qt */
