@@ -1,57 +1,63 @@
 #include <iostream>
 using namespace std;
 int main(){
-int i,n,time,rem,temp=0,qt;
-float wt=0,tat=0;
-cout<<"Enter the total number of process (max 10 pref) = "<<endl;
-cin>>n;
-rem=n;
-int at[n];
-int bt[n];
-int rt[n];
-for(i=0;i<n;i++){
-	cout<<"Arrival time of process "<<i<<endl;
-	cin>>at[i];
-	cout<<"Burst time of process "<<i<<endl;
-	cin>>bt[i];
-	rt[i]=bt[i];
-}
-cout<<"Enter quantum time = "<<endl;
-cin>>qt;
-cout<<"\n\nProcess\t:Turnaround_time:Waiting_time\n\n";
-for(i=0,time=0;rem!=0;){
-	if(rt[i]<=qt && rt[i]>0)
+	int i,n,time,rem,temp=0,qt;
+	float wt=0,tat=0;
+	cout<<"Enter the total number of process="<<endl;
+	cin>>n;
+	rem=n;	
+	int at[n];
+	int bt[n];
+	int rt[n];
+	for(i=0;i<n;i++)
+	{
+	  cout<<"Arrival time for process "<<i<<endl;
+		cin>>at[i];
+		cout<<"Burst time for process "<<i<<endl;
+		cin>>bt[i];
+		rt[i]=bt[i];
+	}
+
+	cout<<"Enter quantum time :"<<endl;
+	cin>>qt;
+	cout<<"\n\nProcess\t:Turnaround_Time:Waiting_Time\n\n";
+	for(i=0,time=0;rem!=0;)
+	{
+		if(rt[i]<=qt && rt[i]>0)
 		{
 			time = time + rt[i];
-		
 			rt[i]=0;
 			temp=1;
 		}
 
-		else if(rt[i]>qt)
+		else if(rt[i]>0)
 		{
 			rt[i] = rt[i] - qt;
 		
 			time = time + qt;
 		
 		}
-		if(rt[i]=0 && temp==1){
+
+		if(rt[i]==0 && temp==1)
+		{
 			rem--;
-			tat=time-at[i];
-			wt=tat-bt[i];
-			cout<<i<<tat<<wt<<endl;
+			printf("Process{%d}\t:\t%d\t:\t%d\n",i,time-at[i],time-at[i]-bt[i]);
+			cout<<endl;
+			tat = tat + time-at[i];
+			wt = wt + tat - bt[i];
 			temp=0;
 		}
+
 		if(i == n-1)
 			i=0;
 		else if(at[i+1] <= time)
 			i++;
 		else
 			i=0;
-	} 
-	cout<<"Avg Waiting_time "<<wt/n<<endl;
-	cout<<"Avg Turn_around_time "<<tat/n<<endl;;
+	}
+
+	cout<<"Avg waiting_time "<<wt/n<<endl;
+	cout<<"Avg turn_around_time "<<tat/n<<endl;;
 
 	return 0;
-	
 }
