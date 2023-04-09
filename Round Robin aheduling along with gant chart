@@ -1,0 +1,77 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+	int i, n, time, rem, temp = 0, qt;
+	float wt = 0, tat = 0;
+	cout << "Enter the total number of processes: " << endl;
+	cin >> n;
+	rem = n;
+	
+	int at[n];
+	int bt[n];
+	int rt[n];
+	for (i = 0; i < n; i++) {
+		cout << "Arrival time for process " << i << ": ";
+		cin >> at[i];
+		cout << "Burst time for process " << i << ": ";
+		cin >> bt[i];
+		rt[i] = bt[i];
+	}
+
+	cout << "Enter quantum time: ";
+	cin >> qt;
+	
+	int process_schedule[1000] = {0}; // Array to store process ID for each time slot
+	cout << "\nGantt chart:\n";
+	cout << "-----------\n";
+	
+	cout << "0";
+	for (time = 0; rem != 0;) {
+		if (rt[i] <= qt && rt[i] > 0) {
+			time += rt[i];
+			rt[i] = 0;
+			temp = 1;
+		}
+		else if (rt[i] > 0) {
+			rt[i] -= qt;
+			time += qt;
+		}
+
+		if (rt[i] == 0 && temp == 1) {
+			rem--;
+			cout << "-> [P" << i << "] <- " << time;
+			process_schedule[time] = i+1; // Store the process ID in the schedule array
+			tat += time - at[i];
+			wt += tat - bt[i];
+			temp = 0;
+		}
+
+		if (i == n-1) {
+			i = 0;
+		}
+		else if (at[i+1] <= time) {
+			i++;
+		}
+		else {
+			i = 0;
+		}
+	}
+	
+	// Print the process schedule
+	cout << "\n\nProcess schedule:\n";
+	cout << "-----------------\n";
+	for (i = 0; i < time; i++) {
+		if (process_schedule[i] != 0) {
+			cout << "P" << process_schedule[i]-1 << "  ";
+		}
+		else {
+			cout << "-  ";
+		}
+	}
+	
+	cout << "\n\nAvg waiting time: " << wt/n << endl;
+	cout << "Avg turnaround time: " << tat/n << endl;
+
+	return 0;
+}
