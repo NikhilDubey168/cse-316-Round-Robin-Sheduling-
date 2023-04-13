@@ -20,7 +20,7 @@ int main(){
 
     for(i=0;i<n;i++)
     {
-        at[i] = rand() % 100;
+        at[i] = rand() % 10 + 5;
         bt[i] = rand() % 10 + 1; 
         rt[i]=bt[i];
         outfile << at[i] << " " << bt[i] << endl; 
