@@ -25,7 +25,7 @@ int main(){
         rt[i]=bt[i];
         outfile << at[i] << " " << bt[i] << endl; 
     }
-    outfile.close(); // close the file
+    outfile.close();
 
     cout<<"Enter quantum time :"<<endl;
     cin>>qt;
