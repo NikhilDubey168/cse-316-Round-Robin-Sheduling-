@@ -25,7 +25,6 @@ int main(){
         rt[i]=bt[i];
         outfile << at[i] << " " << bt[i] << endl; 
     }
-    outfile.close();
 
     cout<<"Enter quantum time :"<<endl;
     cin>>qt;
@@ -47,8 +46,10 @@ int main(){
             cout<<endl;
             tat = tat + time-at[i];
             wt = wt + tat - bt[i];
+            outfile << tat << " " << wt << endl;
             temp = 0;
         }
+        outfile.close();
 
         int next_i = (i + 1) % n;
         if (next_i == 0) {
